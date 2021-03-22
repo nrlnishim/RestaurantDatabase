@@ -1,0 +1,17 @@
+//DISTINCT
+SELECT DISTINCT report
+FROM administration;
+
+//COMPARISON
+SELECT payment_id,cust_id,method,amount
+FROM payment
+WHERE amount>=15 AND amount <=25;
+
+//PATTERN MATCHING
+SELECT payment_id, cust_id, method, amount
+FROM payment
+WHERE method LIKE '%cash%';
+
+//MIN MAX AVG
+SELECT MIN(amount) AS myMIN, MAX(amount) AS myMAX, AVG(amount) AS myAVG
+FROM payment;
