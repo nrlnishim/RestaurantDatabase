@@ -1,0 +1,297 @@
+CREATE DATABASE eboristorante;
+
+USE eboristorante;
+
+//Create Customer Table
+CREATE TABLE customer
+(
+cust_id int,
+name varchar(30),
+phone varchar(20),
+email varchar(50),
+PRIMARY KEY (cust_id)
+);
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('111', 'NUR ALIA BINTI AHMAD', '017-9287855', 'nuralia@gmail.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('112', 'AMEEN BIN AHMAD ALI', '011-39860272', 'ameenali@yahoo.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('113', 'FATIMAH BINTI ABU BAKAR', '011-19976836', 'fatimah88@outlook.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('114', 'NUR IZZAH BINTI ANUAR', '014-3261389', 'izzahanuar11@gmail.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('115', 'MOHD FIRDAUS BIN ZAWAWI', '019-9176605', 'mdfirdaus99@yahoo.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('116', 'ZULAIKHA BINTI YUSOFF', '011-13291388', 'yusoffieyka@gmail.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('117', 'MARYAM BINTI MUHAMMAD', '011-37597107', 'maryycute@gmail.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('118', 'SAFIAH SAFI BINTI YASSIN', '011-14966929', 'safiahsafi@yahoo.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('119', 'MOHD SYAFIQ BIN KHAIRI', '013-9328515', 'syafiqkyle@gmail.com');
+
+INSERT INTO customer
+(cust_id, name, phone, email)
+VALUES ('120', 'ZUBAIDAH BINTI TAMJIS', '013-3691320', 'bedahzabedah23@gmail.com');
+
+SELECT *FROM customer;
+
+//Create Meal Table
+CREATE TABLE meal
+(
+meal_id int,
+cust_id int,
+food varchar(25),
+beverages varchar(25),
+dessert varchar (25),
+appetizer varchar (25),
+PRIMARY KEY (meal_id),
+FOREIGN KEY (cust_id) REFERENCES customer(cust_id)
+); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('1890', '111', 'chicken chop','ice lemon tea','puding caramel',''); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('1179', '112', 'steak','lychee','', 'french fries'); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('1678', '113','','warm water','','mushroom soup & garlic bread'); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('9876', '114', 'mac & cheese','watermelon juice','',''); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('3451', '115', 'spaghetti bolognese','fresh orange', 'tiramisu', 'cheezy wedges'); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('1342', '116', 'spaghetti carbonara','hot chocolate','',''); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('7854', '117', 'aglio olio','honeydew ice blended','red velvet cake',''); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('4327', '118', 'lasagna (meat)','smoothie strawberry','','chicken salad'); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('2327', '119', 'meatball marinara','plain water','chocolate lava',''); 
+
+INSERT INTO meal 
+(meal_id, cust_id, food, beverages,dessert, appetizer)
+VALUES ('1209', '120', 'lamb steak','bandung cincau','','');
+
+SELECT * FROM meal;
+
+//Create Payment Table
+CREATE TABLE payment
+(
+payment_id int,
+cust_id int,
+method varchar(50),
+amount varchar(50),
+PRIMARY KEY (payment_id),
+FOREIGN KEY (cust_id) REFERENCES customer (cust_id)
+);
+
+INSERT INTO payment (payment_id, cust_id, method, amount)
+VALUES ('14568', '111', 'PAYPAL', '26.70'
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14569', '112', 'CASH', '32.00'
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14570', '113', 'PAYWAVE', '10.30'
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14571', '114', 'CASH', '19.20'
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ( '14572', '115', 'CASH', '28.00' 
+);
+
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14573', '116', 'CASH', '28.50' 
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14574', '117', 'PAYPAL', '25.00' 
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14575', '118', 'ONLINE BANKING', '23.00' 
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14576', '119', 'PAYWAVE', '24.30'
+);
+INSERT INTO payment (payment_id, cust_id,method,amount)
+VALUES ('14577', '120', 'PAYPAL', '27.00'
+);
+
+SELECT * FROM payment;
+
+//Create Receipt Table
+CREATE TABLE receipt
+(
+serial_number int,
+cust_id int,
+amount varchar (50),
+date varchar (50),
+time int ,
+payment_id int,
+PRIMARY KEY (serial_number) ,
+FOREIGN KEY (cust_id) REFERENCES customer(cust_id),
+FOREIGN KEY (payment_id) REFERENCES payment(payment_id)
+);
+
+INSERT INTO receipt (serial_number, cust_id, amount, date, time, payment_id)
+VALUES ('87500', '111', '26.70', '22.01.18', '1530', '14568'
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87501', '112', '32.00', '22.01.18', '1820', '14569'
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87502', '113', '10.30', '23.01.18', '2029', '14570' 
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87503', '114', '19.20', '23.01.18', '2036', '14571'
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87504', '115', '28.00', '23.01.18', '2145', '14572' 
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87505', '116', '28.50', '24.01.18', '1300', '14573'
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87506', '117', '25.00', '24.01.18', '1330', '14574'
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87507', '118', '23.00', '24.01.18', '1700', '14575'
+);
+
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87508', '119', '24.30', '24.01.18', '1840', '14576' 
+);
+INSERT INTO receipt (serial_number,cust_id,amount,date,time,payment_id)
+VALUES ('87509', '120', '27.00', '24.01.18', '2030', '14577'
+);
+
+SELECT * FROM receipt;
+
+//Create Feedback Table
+CREATE TABLE feedback
+(
+feedback_id int,
+cust_id int,
+rating varchar(10),
+compliment varchar(50),
+complaint varchar(50),
+PRIMARY KEY (feedback_id)
+);
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20100', '111', '4/5','GOOD SERVICE', '');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20101', '112', '5/5','FAST SERVICE', '');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20102', '113', '3/5','', 'NOT DELICIOUS');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20103', '114', '3/5','', 'NOT MY TASTE');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20104', '115', '4.5/5','AWESOME FOODS', '');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20105', '116', '5/5','NICE STAFF', '');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20106', '117', '5/5','NICE DECORATION', '');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20107', '118', '4.5/5','INSTAGRAMMABLE PLACE', '');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20108', '119', '3.5/5','', 'PRICEY');
+
+INSERT INTO feedback
+(Feedback_id, cust_id, rating, compliment, complaint)
+VALUES ('20109', '120', '5/5','GOOD SERVICE', '');
+
+SELECT *FROM feedback;
+
+//Create Administration Table
+CREATE TABLE administration
+(
+admin_id int,
+feedback_id int,
+name varchar(20),
+report varchar(20),
+PRIMARY KEY (admin_id),
+FOREIGN KEY (feedback_id) REFERENCES feedback(feedback_id)
+); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3411', '20100', 'NURUL','IN PROGRESS'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3422', '20101', 'IZZATI','DONE'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3423', '20102', 'NIK','DONE'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3433', '20103', 'KHAI','DONE'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3444', '20104', 'ASMAQ','IN PROGRESS'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3445', '20105', 'SAIDATUL','IN PROGRESS'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3446', '20106', 'ZUHAYRAH','DONE'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3447', '20107', 'AMALIN','DONE'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3448', '20108', 'HANIS','IN PROGRESS'); 
+
+INSERT INTO administration (admin_id, feedback_id, name, report)
+VALUES ('3449', '20109', 'BALQIS','DONE');
