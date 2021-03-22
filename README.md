@@ -78,3 +78,9 @@ SELECT payment_id, cust_id, method, amount
 FROM payment
 
 WHERE method LIKE '%cash%';
+
+iii.	Feedback - compliment
+iv.	Administration - report
+
+8.	MIN MAX AVG ;
+i.	payment
