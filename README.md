@@ -1,5 +1,5 @@
 # RestaurantDatabase
-Simple Restaurant DB using MySQL Unicode. Steps to insert data and functions.
+Simple Restaurant DB using MySQL Unicode. Steps to insert data and functions. (All codes are in txt files above)
 1.	CREATE DATABASE eboristorante;
 
 2.	CREATE TABLE;
@@ -80,7 +80,9 @@ FROM payment
 WHERE method LIKE '%cash%';
 
 iii.	Feedback - compliment
+
 iv.	Administration - report
 
-8.	MIN MAX AVG ;
+8.	MIN MAX AVG;
+
 i.	payment
